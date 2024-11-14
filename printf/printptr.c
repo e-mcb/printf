@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printhex.c                                         :+:      :+:    :+:   */
+/*   printptr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzutter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 23:57:03 by mzutter           #+#    #+#             */
-/*   Updated: 2024/11/13 23:57:04 by mzutter          ###   ########.fr       */
+/*   Created: 2024/11/13 23:55:55 by mzutter           #+#    #+#             */
+/*   Updated: 2024/11/14 00:01:15 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	hexlen(unsigned int n)
+int	ptrlen(uintptr_t n)
 {
 	int	len;
 
@@ -25,44 +25,34 @@ int	hexlen(unsigned int n)
 	return (len);
 }
 
-int	printchar(int c)
-{
-	write (1, &c, 1);
-	return (1);
-}
-
-void	puthex(unsigned int n, const char c)
+void	putptr(unsigned int n)
 {
 	if (n >= 16)
 	{
-		puthex(n / 16, c);
-		puthex(n % 16, c);
+		puthex(n / 16);
+		puthex(n % 16);
 	}
 	else
 	{
 		if (n <= 9)
 			printchar((n + 48));
 		else
-		{
-			if (c == 'x')
-				printchar((n - 10 + 'a'));
-			if (c == 'X')
-				printchar((n - 10 + 'A'));
-		}
+			printchar((n - 10 + 'a'));
 	}
 }
 
-int	printhexret(unsigned int n, const char c)
+int	printptrret(uintptr_t ptr)
 {
-	if (n == 0)
-		return (write(1, "0", 1));
-	else
-		puthex(n, c);
-	return (hexlen(n));
-}
+	int	len;
 
-/*int main()
-{
-    printhexret(684515, 'x');
-    return 0;
-}*/
+	len = 0;
+	len += write(1, "0x", 2);
+	if (ptr == 0)
+		len += write(1, "0", 1);
+	else
+	{
+		putptr(ptr);
+		len += ptrlen(ptr);
+	}
+	return (len);
+}

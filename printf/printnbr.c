@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printnbr.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzutter <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/13 23:54:05 by mzutter           #+#    #+#             */
+/*   Updated: 2024/11/13 23:55:44 by mzutter          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "printf.h"
 
-int	count_digits(int n)
+static int	count_digits(int n)
 {
 	size_t	i;
 
@@ -20,7 +32,7 @@ int	count_digits(int n)
 	return (i);
 }
 
-char	*create_arr(size_t len, long n)
+static char	*create_arr(size_t len, long n)
 {
 	char	*str;
 
@@ -60,49 +72,19 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-void    putstr(char *str)
+int	printnbr(int n)
 {
-    int i;
+	int		len;
+	char	*nbr;
 
-    i = 0;
-    while(str[i])
-    {
-        write(1, &str[i], 1);
-        i++;
-    }
+	len = 0;
+	nbr = ft_itoa(n);
+	len = printstrret(nbr);
+	free (nbr);
+	return (len);
 }
 
-int printstrret(char *str)
-{
-    int i;
-
-    i = 0;
-    if (str == NULL)
-    {
-        putstr("(null)");
-        return (6);
-    }
-    while (str[i])
-    {
-        write(1, &str[i], 1);
-        i++;
-    }
-    return (i);
-}
-
-int printnbr(int n)
-{
-    int len;
-    char *nbr;
-
-    len = 0;
-    nbr = ft_itoa(n);
-    len = printstrret(nbr);
-    free (nbr);
-    return (len);
-}
-
-int main ()
-{
-    printf("\n%d\n", printnbr(5403));
-}
+// int main ()
+// {
+//     printf("\n%d\n", printnbr(5403));
+// }
