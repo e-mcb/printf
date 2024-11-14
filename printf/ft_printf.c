@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 23:50:38 by mzutter           #+#    #+#             */
-/*   Updated: 2024/11/14 00:55:35 by mzutter          ###   ########.fr       */
+/*   Updated: 2024/11/14 01:33:37 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	printchar(int c)
 
 static int	printpercent(void)
 {
-	write (1, 'c', 1);
+	write (1, "%", 1);
 	return (1);
 }
 
@@ -32,15 +32,15 @@ int	check_format(va_list args, const char c)
 	if (c == 'c')
 		len += printchar(va_arg(args, int));
 	else if (c == 's')
-		len += printstr(va_arg(args, char *));
+		len += printstrret(va_arg(args, char *));
 	else if (c == 'p')
-		len += printptr(va_arg(args, void *));
+		len += printptrret(va_arg(args, unsigned long long));
 	else if (c == 'd' || c == 'i')
 		len += printnbr(va_arg(args, int));
 	else if (c == 'u')
 		len += printuint(va_arg(args, unsigned int));
 	else if (c == 'x' || c == 'X')
-		len += printhex(va_arg(args, unsigned int), c);
+		len += printhexret(va_arg(args, unsigned int), c);
 	else if (c == '%')
 		len += printpercent();
 	return (len);
@@ -60,7 +60,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			len += check_format(args, str[i + 1]);
-			i += 2;
+			i++;
 		}
 		else
 			len += printchar(str[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printhex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzutter <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 23:57:03 by mzutter           #+#    #+#             */
-/*   Updated: 2024/11/13 23:57:04 by mzutter          ###   ########.fr       */
+/*   Updated: 2024/11/14 01:22:52 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ int	hexlen(unsigned int n)
 		n /= 16;
 	}
 	return (len);
-}
-
-int	printchar(int c)
-{
-	write (1, &c, 1);
-	return (1);
 }
 
 void	puthex(unsigned int n, const char c)

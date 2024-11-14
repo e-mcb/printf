@@ -13,7 +13,9 @@ OBJFILES = $(SRC:.c=.o)
 AR = ar -rc
 NAME = libftprintf.a
 
-all: $(NAME): $(OBJFILES)
+all: $(NAME)
+
+$(NAME): $(OBJFILES)
 	$(AR) $(NAME) $(OBJFILES)
 	ranlib $(NAME)
 

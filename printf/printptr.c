@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printptr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzutter <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 23:55:55 by mzutter           #+#    #+#             */
-/*   Updated: 2024/11/14 00:01:15 by mzutter          ###   ########.fr       */
+/*   Updated: 2024/11/14 01:36:16 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	putptr(unsigned int n)
 {
 	if (n >= 16)
 	{
-		puthex(n / 16);
-		puthex(n % 16);
+		putptr(n / 16);
+		putptr(n % 16);
 	}
 	else
 	{
@@ -41,7 +41,7 @@ void	putptr(unsigned int n)
 	}
 }
 
-int	printptrret(uintptr_t ptr)
+int	printptrret(unsigned long long ptr)
 {
 	int	len;
 
