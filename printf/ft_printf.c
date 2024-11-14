@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 23:50:38 by mzutter           #+#    #+#             */
-/*   Updated: 2024/11/14 01:33:37 by mzutter          ###   ########.fr       */
+/*   Updated: 2024/11/14 02:33:57 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int	printpercent(void)
 
 int	check_format(va_list args, const char c)
 {
-	int	len;
+	int					len;
+	unsigned long long	ptr;
 
 	len = 0;
 	if (c == 'c')
@@ -34,7 +35,13 @@ int	check_format(va_list args, const char c)
 	else if (c == 's')
 		len += printstrret(va_arg(args, char *));
 	else if (c == 'p')
-		len += printptrret(va_arg(args, unsigned long long));
+	{
+		ptr = va_arg(args, unsigned long);
+		if (ptr)
+			len += printptrret(ptr);
+		else
+			len += printstrret("(nil)");
+	}
 	else if (c == 'd' || c == 'i')
 		len += printnbr(va_arg(args, int));
 	else if (c == 'u')
@@ -69,3 +76,12 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (len);
 }
+
+// #include <stdio.h>
+
+// int main()
+// {
+// 	// ft_printf(" %p %p ", 0, 0);
+// 	printf(" %p %p ", 0, 0);
+// 	return 0;
+// }

@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 23:55:55 by mzutter           #+#    #+#             */
-/*   Updated: 2024/11/14 01:36:16 by mzutter          ###   ########.fr       */
+/*   Updated: 2024/11/14 02:12:59 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ptrlen(uintptr_t n)
 	return (len);
 }
 
-void	putptr(unsigned int n)
+void	putptr(uintptr_t n)
 {
 	if (n >= 16)
 	{
